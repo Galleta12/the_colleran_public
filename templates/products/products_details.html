@@ -1,0 +1,531 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<style>
+select {
+
+/* styling */
+background-color: white;
+border: thin solid black;
+border-radius: 4px;
+display: inline-block;
+font: inherit;
+line-height: 1.5em;
+padding: 0.5em 3.5em 0.5em 1em;
+ 
+
+}
+
+details summary::-webkit-details-marker { display: none; }
+summary::before {
+  font-family: "Hiragino Mincho ProN", "Open Sans", sans-serif;
+  content: "▶";
+  position: absolute;
+  top: 1rem;
+  left: 0.8rem;
+  transform: rotate(0);
+  transform-origin: center;
+  transition: 0.2s transform ease;
+}
+details[open] > summary:before {
+  transform: rotate(90deg);
+  transition: 0.45s transform ease;
+}
+
+/* # The Rotating Marker # */
+details summary::-webkit-details-marker { display: none; }
+summary::before {
+  font-family: "Hiragino Mincho ProN", "Open Sans", sans-serif;
+  content: "▶";
+  position: absolute;
+  top: 1rem;
+  left: 0.8rem;
+  transform: rotate(0);
+  transform-origin: center;
+  transition: 0.2s transform ease;
+}
+details[open] > summary:before {
+  transform: rotate(90deg);
+  transition: 0.45s transform ease;
+}
+
+/* # The Sliding Summary # */
+details { overflow: hidden; }
+details summary {
+  position: relative;
+  z-index: 10;
+}
+@keyframes details-show {
+  from {
+    margin-bottom: -80%;
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+details > *:not(summary) {
+  animation: details-show 500ms ease-in-out;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease-in-out;
+  color: transparent;
+  overflow: hidden;
+}
+details[open] > *:not(summary) { color: inherit; }
+
+/* # Style 2 # */
+details.style2 summary::before {
+  content: "×";
+  color: #FFF;
+  font-size: 2rem;
+  line-height: 1rem;
+  transform: rotate(-45deg);
+  top: 1.2rem;
+  left: 0.5rem;
+}
+details[open].style2 > summary:before {
+  transform: rotate(90deg);
+  color: #F00 !important;
+  transition: color ease 2s, transform ease 1s;
+}
+
+/* # Style 3 # */
+details.style3 summary::before {
+  content: "›";
+  font-size: 2.5rem;
+  line-height: 1rem;
+  top: 1.3rem;
+  left: 0rem;
+  margin: -0.5rem -0.5rem 0 0.5rem;
+  transform-origin: bottom center;
+  transition: margin linear 0.05s;
+}
+details.style3:hover > summary:before {
+  color: #FFF;
+}
+details[open].style3 > summary:before {
+  left: 0rem;
+  color: #CCC;
+  transform: rotate(90deg);
+  margin-left: 0.4rem;
+  transition: color ease 2s, transform ease 1s, margin ease 1s;
+}
+@supports (-webkit-touch-callout: none) {
+  details.style3 summary::before { top: 1.6rem; }
+  details[open].style3 > summary:before { top: 1.3rem; transition: all 0.8s; }
+}
+
+/* # Style 4 # */
+details.style4 summary {
+  padding-right: 2.2rem;
+  padding-left: 1rem;
+}
+details.style4 summary::before {
+  content: "×";
+  color: #FFF;
+  font-size: 2rem;
+  line-height: 1rem;
+  transform: rotate(-45deg);
+  top: 1.2rem;
+  left: unset;
+  right: 0.6rem;
+}
+details[open].style4 > summary:before {
+  transform: rotate(90deg);
+  color: #F00 !important;
+  transition: color ease 2s, transform ease 1s;
+}
+
+/* # Style 5 # */
+details.style5 summary {
+  padding-right: 2.2rem;
+  padding-left: 1rem;
+}
+details.style5 summary::before {
+  content: "🙈";
+  font-size: 1.5rem;
+  top: 0.5rem;
+  left: unset;
+  right: 0.5rem;
+  transform: rotate(0);
+}
+details.style5:hover > summary::before {
+  content: "🙊";
+}
+details[open].style5 > summary::before {
+  content: "🐵";
+  transform: rotate(0deg);
+}
+details[open].style5 > summary:hover::before {
+  content: "🙉";
+}
+details .monkey-see { display: inline; }
+details .monkey-hide { display: none; }
+details[open] .monkey-see { display: none; }
+details[open] .monkey-hide { display: inline; }
+
+/* # Style 6 # */
+details.style6 summary {
+  padding-right: 2.2rem;
+  padding-left: 1rem;
+}
+details.style6 summary::before {
+  content: "❔";
+  font-size: 1.5rem;
+  top: 0.5rem;
+  left: unset;
+  right: 0.5rem;
+  transform: rotate(0);
+}
+details.style6:hover > summary:before {
+  content: "👁️‍🗨️";
+}
+details[open].style6 > summary:before {
+  content: "❌";
+  transform: rotate(0deg);
+}
+
+/* # Style 7 # */
+details.style7 summary {
+  padding-left: 3rem;
+}
+details[open].style7 summary,
+details.style7:hover summary {
+  background: #000;
+  color: #CCC;
+}
+details[open].style7 summary strong,
+details.style7:hover summary strong {
+  color: #FDCE4C;
+}
+details.style7:hover summary strong { color: #ffdf87; }
+details.style7 summary::before {
+  content: "🌑";
+  font-size: 1.5rem;
+  top: 0.5rem;
+  left: 0.5rem;
+  transform: rotate(0);
+}
+details.style7:hover > summary::before {
+  content: "🌕";
+}
+details[open].style7 > summary::before {
+  content: "🌕";
+  transform: rotate(0deg);
+}
+details[open].style7 > summary:hover::before {
+  content: "🌕";
+}
+details .moon-new { display: inline; }
+details .moon-full { display: none; }
+details[open] .moon-new { display: none; }
+details[open] .moon-full { display: inline; }
+details.style7 .content { background: #DDD; }
+
+/* # Just Some Pretty Styles # */
+body { font-family: "Open Sans", sans-serif; padding-bottom: 400px; }
+img { max-width: 100%; }
+p { margin: 0; padding-bottom: 10px; }
+p:last-child { padding: 0; }
+details {
+  max-width: 500px;
+  box-sizing: border-box;
+  margin-top: 5px;
+  background: white;
+}
+summary {
+  border: 4px solid transparent;
+  outline: none;
+  padding: 1rem;
+  display: block;
+  background: #666;
+  color: white;
+  padding-left: 2.2rem;
+  position: relative;
+  cursor: pointer;
+}
+details[open] summary,
+summary:hover {
+  color: #FFCA28;
+  background: #444;
+}
+summary:hover strong,
+details[open] summary strong,
+summary:hover::before,
+details[open] summary::before {
+  color: #FFA128;
+}
+.content {
+  padding: 10px;
+  border: 2px solid #888;
+  border-top: none;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+
+
+</style>
+<script>
+  function getToken(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+      return cookieValue;
+    }
+  const csrftoken = getToken('csrftoken');
+</script>
+
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <!-- <h3 class="card-title">{{single_product.product_name}}</h3> -->
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-6">
+                    <div class="white-box text-center"><img src="{{single_product.photo_principal.url}}"
+                            style="height: 400px; width: 365px;"></div>
+
+                </div>
+               
+                 
+                <div class="col-lg-7 col-md-7 col-sm-6">
+                    <h3 style="color:blue" class="card-title">{{single_product.product_name}}</h3>
+                    <h4 class="box-title mt-5">Product description</h4>
+                    <p>{{single_product.decription_product|safe}}</p>
+                    <!-- <form  action="" method="POST">
+                    {% csrf_token %} -->
+                    {% include 'includes/messages.html' %} 
+                    {% if single_product.sizes_for_clothes %}
+                    <br>
+                        <strong>Select</strong> 
+                        <select id="sizes" name="sizes">
+                            {% for sizes in single_product.sizes_for_clothes %}
+                           <option id="test" value="{{sizes}}" data-target="{{sizes}}"  selected>{{sizes}}</option>
+                            {% endfor %}
+                            <option value="" selected disabled hidden>Choose the size here</option>
+                        </select>
+                  
+                   
+                    {% endif %}
+                    
+                    
+                    
+                    
+                    <h2 class="mt-5" style="color:orange">
+                        £{{single_product.price|floatformat:2}}</small>
+                    </h2>
+                    <button class="btn btn-dark btn-rounded mr-1"  data-toggle="tooltip" title=""
+                        data-original-title="Add to cart">
+                        <i class="fa fa-shopping-cart"></i>
+                    </button>
+                    <button data-type="{{single_product.category}}" data-product="{{single_product.id}}" data-action="add" class="btn btn-primary btn-rounded update-cart">Buy Now</button>
+                    
+                    <!-- </form>                                                          -->
+                    
+             
+                    
+                 
+                    
+                    
+                    
+                    <h3 class="box-title mt-5">Key Highlights</h3>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-check text-success"></i>Sturdy structure</li>
+                        <li><i class="fa fa-check text-success"></i>Designed to foster easy portability</li>
+                        <li><i class="fa fa-check text-success"></i>Perfect furniture to flaunt your wonderful
+                            collectibles</li>
+                    </ul>
+                   
+
+                
+
+                </div>
+                
+                <details>
+                    <summary> <strong>Table of Sizes</strong></summary>
+                    <table>
+                        <tr>
+                          <th>Size</th>
+                          <th>Age</th>
+                          <th>Garment Size</th>
+                        </tr>
+                        <tr>
+                          <td>Large</td>
+                          <td>9-10</td>
+                          <td>Germany</td>
+                        </tr>
+                        <tr>
+                          <td>Medium</td>
+                          <td>7-8</td>
+                          <td>Mexico</td>
+                        </tr>
+                        <tr>
+                          <td>Small</td>
+                          <td>5-6</td>
+                          <td>Austria</td>
+                        </tr>
+                        <tr>
+                          <td>XL</td>
+                          <td>Helen Bennett</td>
+                          <td>UK</td>
+                        </tr>
+                        <tr>
+                          <td>XXL</td>
+                          <td>Yoshi Tannamuri</td>
+                          <td>Canada</td>
+                        </tr>
+                        <tr>
+                          <td>Child 11-13</td>
+                          <td>11-13</td>
+                          <td>Italy</td>
+                        </tr>
+                        <tr>
+                          <td>Child 3-4</td>
+                          <td>3-4</td>
+                          <td>Italy</td>
+                        </tr>
+                        <tr>
+                          <td>Child 5-6</td>
+                          <td>5-6</td>
+                          <td>Italy</td>
+                        </tr>
+                        <tr>
+                          <td>Child 7-8</td>
+                          <td>7-8</td>
+                          <td>Italy</td>
+                        </tr>
+                        <tr>
+                          <td>Child 9-10</td>
+                          <td>9-10</td>
+                          <td>Italy</td>
+                        </tr>
+                      </table>
+                  </details>
+                
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <h3 class="box-title mt-5">General Info</h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-product">
+                            <tbody>
+                                <tr>
+                                    <td width="390">Brand</td>
+                                    <td>Stellar</td>
+                                </tr>
+                                <tr>
+                                    <td>Delivery Condition</td>
+                                    <td>Knock Down</td>
+                                </tr>
+                                <tr>
+                                    <td>Seat Lock Included</td>
+                                    <td>Yes</td>
+                                </tr>
+                                <tr>
+                                    <td>Type</td>
+                                    <td>Office Chair</td>
+                                </tr>
+                                <tr>
+                                    <td>Style</td>
+                                    <td>Contemporary&amp;Modern</td>
+                                </tr>
+                                <tr>
+                                    <td>Wheels Included</td>
+                                    <td>Yes</td>
+                                </tr>
+                                <tr>
+                                    <td>Upholstery Included</td>
+                                    <td>Yes</td>
+                                </tr>
+                                <tr>
+                                    <td>Upholstery Type</td>
+                                    <td>Cushion</td>
+                                </tr>
+                                <tr>
+                                    <td>Head Support</td>
+                                    <td>No</td>
+                                </tr>
+                                <tr>
+                                    <td>Suitable For</td>
+                                    <td>Study&amp;Home Office</td>
+                                </tr>
+                                <tr>
+                                    <td>Adjustable Height</td>
+                                    <td>Yes</td>
+                                </tr>
+                                <tr>
+                                    <td>Model Number</td>
+                                    <td>F01020701-00HT744A06</td>
+                                </tr>
+                                <tr>
+                                    <td>Armrest Included</td>
+                                    <td>Yes</td>
+                                </tr>
+                                <tr>
+                                    <td>Care Instructions</td>
+                                    <td>Handle With Care,Keep In Dry Place,Do Not Apply Any Chemical For Cleaning.</td>
+                                </tr>
+                                <tr>
+                                    <td>Finish Type</td>
+                                    <td>Matte</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+     setTimeout(function(){
+        $('#message').fadeOut('slow');
+    }, 4000)
+    
+           
+    // var sec = document.getElementById("sizes");
+    
+    
+    // for (var i = 0; i <sec.length; i++){
+    //   if(sec.options[i].value !=""){
+      
+    //   console.log(sec.options[i].text);
+    // }}
+    // var el = sec.options[sec.length-1].text;
+    // el = "XD";
+    // console.log(el);
+
+</script>
+
+
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+<header class="bg-dark py-5">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center justify-content-center">
+            <div class="col-lg-8 col-xl-7 col-xxl-6">
+                <div class="my-5 text-center text-xl-start">
+                    <h1 class="display-5 fw-bolder text-white mb-2 text-center">What We Do</h1>
+                
+                </div>
+            </div>
+         
+        </div>
+    </div>
+</header>
+
+
+
+<div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row">   
+        {% for what_do in what_dos %}
+          
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="{{what_do.photo.url}}" alt="..." />
+                <div class="card-body">
+                  <p class="card-text">{{what_do.info_name}}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <form action="{% url 'what_do_details' what_do.id %}">
+                      <button type="submit" class="btn btn-sm btn-outline-secondary" >View</button>
+                    </form>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+          {% endfor %}
+        </div>
+      
+        
+        
+        </div>
+      </div>
+
+{% endblock %}

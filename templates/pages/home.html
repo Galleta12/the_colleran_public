@@ -1,0 +1,319 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<style>
+  
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+#hero {
+  width: 100%;
+  height: 80vh;
+  background: url("{% static 'assets/Capture.PNG'%}") top center;
+  background-size: cover;
+  position: relative;
+}
+#hero:before {
+  content: "";
+  background: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+#hero .container {
+  padding-top: 72px;
+}
+@media (max-width: 992px) {
+  #hero .container {
+    padding-top: 62px;
+  }
+}
+#hero h1 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+}
+#hero h2 {
+  color: #eee;
+  margin: 10px 0 0 0;
+  font-size: 24px;
+}
+#hero .btn-get-started {
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 10px 35px;
+  border-radius: 50px;
+  transition: 0.5s;
+  margin-top: 30px;
+  border: 2px solid #fff;
+  color: #fff;
+}
+#hero .btn-get-started:hover {
+  background: #5fcf80;
+  border: 2px solid #5fcf80;
+}
+@media (min-width: 1024px) {
+  #hero {
+    background-attachment: fixed;
+  }
+}
+@media (max-width: 768px) {
+  #hero {
+    height: 100vh;
+  }
+  #hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  #hero h2 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+
+</style>
+
+
+<header>
+    <section id="hero" class="d-flex justify-content-center align-items-center">
+        <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+          <h1>The Bobby<br>Colleran</h1>
+          <h2>Webpage for support and shop</h2>
+          <a href="#features" class="btn-get-started">Get Started</a>
+        </div>
+      </section><!-- End Hero -->
+  </header>
+
+        <!-- Header-->
+       
+        
+        <!-- Features section-->
+        <section class="py-5" name ="features" id="features">
+            <div class="container px-5 my-5">
+                <div class="row gx-5">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h2 class="fw-bolder mb-0">What do we do!!</h2>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="row gx-5 row-cols-1 row-cols-md-2">
+                            {% for what in data1.what_dos %}
+                            <div class="col mb-5 h-100">
+                                <!-- <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i
+                                        class="bi bi-collection"></i></div> -->
+                                        <img class="feature bg-primary bg-gradient text-white rounded-3 mb-3"
+                                        src="{{ what.icons.url }}" alt="..." />
+                                <h2 class="h5 features-name">{{ what.info_name }}</h2>
+                                <form action="{% url 'what_do_details' what.id %}">
+                                    <button type="submit" class="btn btn-sm btn-outline-secondary features-link" >View</button>
+                                  </form>
+                                <button class ="saveBtn btn btn-sm btn-outline-primary">
+                                    Click here
+                               </button>
+                             
+                            </div>
+                            {% endfor %}
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Testimonial section-->
+        <div class="py-5 bg-light">
+            <div class="container px-5 my-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-4 mb-5">
+                        <div class="card h-100 shadow border-0">
+                            <img class="card-img-top" src="{% static 'assets/Capture.PNG'%}" alt="..." />
+                        </div>
+                    </div>
+                    <div class="col-md-5 align-self-center">
+                        <div class="text-center">
+                            <div class="fs-10 mb-10 fst-italic">"Working with Start Bootstrap templates has saved me
+                                tons of development time when building new projects! Starting with a Bootstrap template
+                                just makes things easier!"</div>
+                            <br>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d"
+                                    alt="..." />
+                                    
+                                <div class="fw-bold">
+                
+                                    <a class="navbar-brand" href="{% url 'about_bobby' %}">Click to Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Blog preview section-->
+        <section class="py-5">
+            <div class="container px-5 my-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6">
+                        <div class="text-center">
+                            <h2 class="fw-bolder">From our blog</h2>
+                            <p class="lead fw-normal text-muted mb-5">Lorem ipsum, dolor sit amet consectetur
+                                adipisicing elit. Eaque fugit ratione dicta mollitia. Officiis ad.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row gx-5">
+                    {% for product in data.products_db %}
+                    <div class="col-lg-4 mb-5">
+                        <div class="card h-100 shadow border-0">
+                            <img class="card-img-top" src="{{ product.photo_principal.url }}" alt="..." />
+                            <div class="card-body p-4">
+                                <div class="badge bg-primary bg-gradient rounded-pill mb-2">£{{product.price|floatformat:2}}</div>
+                                <a class="text-decoration-none link-dark stretched-link" href="{% url 'products_details' product.id %}">
+                                    <h5 class="card-title mb-3">{{product.product_name}}</h5>
+                                </a>
+                                <p class="card-text mb-0">{{product.decription_product|safe}}</p>
+                            </div>
+                            <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                                <div class="d-flex align-items-end justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <img class="rounded-circle me-3"
+                                            src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
+                                        <div class="small">
+                                            <div class="fw-bold">Kelly Rowan</div>
+                                            <div class="text-muted">March 12, 2021 &middot; 6 min read</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                </div>
+                <!-- Call to action-->
+                <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
+                    <div
+                        class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
+                        <div class="mb-4 mb-xl-0">
+                            <div class="fs-3 fw-bold text-white">New products, delivered to you.</div>
+                            <div class="text-white-50">Sign up for our newsletter for the latest updates.</div>
+                        </div>
+                        <div class="ms-xl-4">
+                            <div class="input-group mb-2">
+                                <input class="form-control" type="text" placeholder="Email address..."
+                                    aria-label="Email address..." aria-describedby="button-newsletter" />
+                                <button class="btn btn-outline-light" id="button-newsletter" type="button">Sign
+                                    up</button>
+                            </div>
+                            <div class="small text-white-50">We care about privacy, and will never share your data.
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+        
+     
+        
+        
+        <script>
+            
+            var btns = document.getElementsByClassName('saveBtn');
+           
+            var sec = document.getElementById("features");
+            var names = document.querySelectorAll(".features-name");
+            var links = document.querySelectorAll(".features-link");
+            
+            let index = 0;
+           
+            
+            const colors = {ob1: ["yellow","white"], ob2: ["green","white"], ob3:["red","white"], ob4:["purple","white"]};
+          
+            
+            for (var i = 0; i <btns.length; i++){
+                names[i].style.display = "none";
+                links[i].style.display = "none";
+                if( i == 0 && i < btns.length){
+                    
+                    btns[i].addEventListener('click',function onClick(){
+                    sec.style.backgroundColor = colors.ob1[index];
+                   
+                   
+                    index = index >= colors.ob1.length - 1 ?  0: index + 1 ;
+                    show_info(0);
+                    });
+                }
+                else if(i == 1 && i < btns.length){
+                    current_index= 1;
+                    btns[i].addEventListener('click',function onClick(){
+                    sec.style.backgroundColor = colors.ob2[index];
+                   
+                    index = index >= colors.ob2.length - 1 ? 0 : index + 1;
+                    show_info(1);
+                 
+                    });
+                }
+                else if(i == 2 && i < btns.length){
+                   
+                    btns[i].addEventListener('click',function onClick(){
+                    sec.style.backgroundColor = colors.ob3[index];
+                   
+                    index = index >= colors.ob3.length - 1 ? 0 : index + 1;
+                    show_info(2);
+                    });
+                }
+                else if(i == 3 && i < btns.length){
+                  
+                    btns[i].addEventListener('click',function onClick(){
+                    sec.style.backgroundColor = colors.ob4[index];
+                  
+                    index = index >= colors.ob4.length - 1 ? 0 : index + 1;
+                    show_info(3);
+                  
+                    });
+                }
+               
+             
+            }
+
+            function show_info(j){
+            
+                names[j].style.display = "block";
+                links[j].style.display = "block";
+                for(let x = 0; x < names.length; x++) {
+                    if (j != x){
+                       
+                        names[x].style.display = "none";
+                        links[x].style.display = "none";  
+                    }
+                }
+            }
+
+
+          
+
+            
+                  
+        </script> 
+    
+
+    
+   
+
+    
+
+
+
+
+
+{% endblock %}

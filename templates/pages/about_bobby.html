@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+<style>
+    .center {
+        text-align: center;
+        display: block;  
+    }
+   
+</style>
+
+
+
+<section class="py-5">
+    <div class="container px-5 my-5">
+        <div class="row gx-5">
+            <div class="col-lg-3">
+                <div class="d-flex align-items-center mt-lg-5 mb-4">
+                    <img class="img-fluid rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
+                    <div class="ms-3">
+                        <div class="fw-bold">Written by Bobby’s mum</div>
+                        <div class="text-muted">Joanne</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <!-- Post content-->
+                <article>
+                    <!-- Post header-->
+                    <header class="mb-4">
+                        <!-- Post title-->
+                        <h1 class="fw-bolder mb-1">Bobby</h1>
+                        <!-- Post meta content-->
+                        <div class="text-muted fst-italic mb-2">January 1, 2021</div>
+                        <!-- Post categories-->
+                        <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
+                        <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
+                    </header>
+                    <!-- Preview image figure-->
+                    <figure class="mb-4 center"><img class="img-fluid rounded" src="{% static 'assets/Capture.PNG'%}" alt="..." />
+                        <img class="img-fluid rounded" src="{% static 'assets/Capture1.PNG'%}" alt="..." />
+                    </figure>
+                    
+                    <!-- Post content-->
+                    <section class="mb-5">
+                        <p class="fs-5 mb-4">Where do I begin, how can I put into words how perfect my little boy was, how his unique character made everyone that met him fall in love with him. He was special in every way, he was a little old man who made us laugh every day. He was cheeky but charming.</p>
+                        <p class="fs-5 mb-4">His voice ‘‘that’s my bruva’’, ‘’best in the word’’, ‘’Nan is that faire’’ made him more cute but like a little rebel.</p>
+                        <p class="fs-5 mb-4">He loved to play, he spent hours in his bedroom playing with his police figures. He said to me one day ‘’mum when I’m big I’m gonna be a robber coz they get loads of money or maybe one of them men that cut the grass with the little cars’’ all I could do was laugh.</p>
+                        <p class="fs-5 mb-4">He loved his family & friends, even though he was tough he had the biggest caring heart & stood up for what was right, he would never let anyone be upset or alone.</p>
+                        <p class="fs-5 mb-4">He loved cowboys & Indians just before his 6th birthday he decided that he wanted a white lone ranger hat!! Out of sheer luck I found one in the Disney shop (how I will never know). This made his birthday perfect along with his motorbike pedal bike & his motorbike helmet. He was a proper little boy who loved all things like this. But he would also often play out by his house & he loved to push the dolls prams or ride on the Disney princess quad.</p>
+                        <p class="fs-5 mb-4">Bobby was his own person & didn’t care what anyone thought.</p>
+                        <p class="fs-5 mb-4">He was the middle child, Harry his ‘’big bruva’’ & his ‘’twinnies’’ his little brothers, he loved his brothers. He could be grown up with harry or be silly with his twinnies. He loved being a big brother especially to twins he would tell everyone about them in school. When they started his school he would stand by nursery railings every day at play time to check they were ok & to talk to them.</p>
+                        <p class="fs-5 mb-4">He was good at football, when he got into a team he was so excited ‘’just like our arry’’ but it didn’t last long because if it was wet or cold he would say ‘’I’m not going out its too cold’’ so he would stay in the house in his favourite clothes…. his pyjamas! He would play the Xbox for hours.</p>
+                        <p class="fs-5 mb-4">He loved to come shopping with me. He would help pack my bags & carry them out the shop, even though they were too heavy for him he would never give up, he just loved to help & look after his mum.</p>
+                        <p class="fs-5 mb-4">He adored his Dad especially his tickles of a night when he got out the bath, he would giggle for hours.</p>
+                        <p class="fs-5 mb-4">His granddad Richie was like his best friend, they were so alike. ‘’Grandy’’ loved Bobby’s cheeky character because it would make him laugh, he would also encourage Bobby!</p>
+                        <p class="fs-5 mb-4">I hope this does Bobby justice and describes his personality because he really was a one of a kind special little boy who loved life.  </p>
+                    </section>
+                    
+                </article>
+             
+               
+              
+            </div>
+            
+        </div>
+    </div>
+</section>
+<section class="py-5 bg-light" id="scroll-target">
+    <div class="container px-5 my-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6"><img class="img-fluid rounded mb-5 mb-lg-0" src="{% static 'assets/Capture3.PNG'%}" alt="..." /></div>
+            <div class="col-lg-6">
+                <h2 class="fw-bolder mb-4 mt-5">To remember Bobby</h2>
+                <p class="lead fw-normal text-muted mb-0">We have donated £15,000 to Bobby’s school Blackmoor park infants, for a fun Bobby’s memorial.  Bobby’s memorial here is a fun interactive cave that the children can play in & also have outdoor learning. Bobby would love this, and love that all of his friends and classmates got to have lots of fun, while remembering him. This project is ongoing & we would like to add more stuff to the school. A memorial bench or flower garden was not what we wanted for Bobby as he was full of too fun & mischievousness, so it was important that his memorial was fun, to reflect his personality, for all the children to enjoy.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-5">
+    <div class="container px-5 my-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6 order-first order-lg-last"><img class="img-fluid rounded mb-5 mb-lg-0" src="{% static 'assets/Capture4.PNG'%}" alt="..." /></div>
+            <div class="col-lg-6">
+                <p class="lead fw-normal text-muted mb-0">We have also donated £10,000 to alder hey neuro department – which helps children with head injuries etc. Bobby has two rooms on this department ‘Inspired by Bobby Colleran’ Room number 16, which also has facilities for children with leg injuries/disability, and Room 13, which was chosen especially as Bobby’s birthday is 13th March.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+{% endblock %}

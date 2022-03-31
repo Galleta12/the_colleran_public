@@ -1,0 +1,75 @@
+{% load static %}
+<style>
+      .badge1:after{
+        content:attr(value);
+        font-size:12px;
+        color: #fff;
+        background: red;
+        border-radius:50%;
+        padding: 0 5px;
+        position:relative;
+        left:-8px;
+        top:-10px;
+        opacity:0.9;
+    }
+</style>
+
+
+
+<!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container px-5">
+        <a class="navbar-brand" href="{% url 'home' %}">Logo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'what_we_dos' %}">What We Do</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Bareavement Support</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'about_bobby' %}">About Bobby</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'events' %}">Events</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'blogs' %}">Fundraising Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="faq.html">Donate</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'contacts' %}">Contact Us</a></li>
+                <!-- <i class="fa badge fa-lg" value=5>&#xf290;</i> -->
+                
+                <a href="{% url 'cart' %}" class="carts.">
+                    <i class="fa badge1 fa-lg" value=8>&#xf07a;</i>
+                   
+                </a>
+         
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                        {% if user.is_authenticated %}
+                        <li><a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}">Log Out</a></li>
+                        <form action="{% url 'logout' %}" id="logout" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden">
+                        </form>
+
+                        {% else %}
+
+                        <li><a class="dropdown-item" href="{% url 'login' %}">Log In</a></li>
+                        <li><a class="dropdown-item" href="{% url 'register' %}">Register</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                        <li><a class="dropdown-item" href="{% url 'products' %}">Products</a></li>
+                        <li><a class="dropdown-item" href="portfolio-overview.html">Cart</a></li>
+                        <li><a class="dropdown-item" href="portfolio-item.html">Terms of Service</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

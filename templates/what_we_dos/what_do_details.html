@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+
+
+<style>
+    .center {
+        text-align: center;
+        display: block;  
+    }
+   
+</style>
+
+
+
+<section class="py-5">
+    <div class="container px-5 my-5">
+        <div class="row gx-5">
+            <div class="col-lg-3">
+                <div class="d-flex align-items-center mt-lg-5 mb-4">
+                    <img class="img-fluid rounded-circle" src="{{single_what.icons.url}}" alt="..." />
+                   
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <!-- Post content-->
+                <article>
+                    <!-- Post header-->
+               
+                    <!-- Preview image figure-->
+                    <figure class="mb-4 center"><img class="img-fluid rounded" src="{{single_what.photo.url}}" alt="..." />
+                    {% if single_what.photo2%}
+                    
+                   
+                    <img class="img-fluid rounded" src="{{single_what.photo2.url}}" alt="..." />
+                    {% endif %}
+                    </figure>
+                    <header class="mb-4">
+                        <!-- Post title-->
+                        <h1 style="text-align:center" class="fw-bolder mb-1">{{single_what.info_name}}</h1>
+
+                    </header>
+                    
+                    <!-- Post content-->
+                    <section class="mb-5">
+                        <p class="fs-5 mb-4">{{single_what.decription|safe}}</p>
+                        <a class="navbar-brand" href="{{single_what.link}}">{{single_what.link}}</a>
+                        
+                    </section>
+                    
+                </article>
+             
+               
+              
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+{% endblock %}
